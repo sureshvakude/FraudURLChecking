@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Submit Form</title>
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"  media="screen,projection"/>
+
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+	<header>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Fraud Detection</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li class="active"><a href="mega.html">Home</a></li>
+          <li><a href="sample.html">Check URL</a></li>
+          <li><a href="urls_checked.php">Url's list</a></li>
+          <li><a href="about.php">About</a></li>
+        </ul>
+      </div>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+      <li class="active"><a href="mega.html">Home</a></li>
+      <li><a href="sample.html">Check URL</a></li>
+      <li><a href="urls_checked.php">Url's list/a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </header>
+
+	<!-- Side Navigation Bar (Mobile Version) -->
+	<ul class="sidenav" id="mobile-demo">
+      <li class="active"><a href="mega.html">Home</a></li>
+      <li><a href="sample.html">Check URL</a></li>
+      <li><a href="urls_checked.php">Url's list/a></li>
+      <li><a href="#">About</a></li>
+	</ul>
+
+	<div class="container">
+		<h1 class="center-align">Submit Form</h1>
+		<div class="row">
+			<form class="col s12" name="myForm" method="post" action = "check.php" onsubmit="return validateForm()">
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="url" type="text" name="url" class="validate" required>
+						<label for="url">Enter URL:</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="description" name="description" type="text" class="validate">
+						<label for="description">Description (optional):</label>
+					</div>
+				</div>
+				<p id="error" style="color:red"></p>
+						<button class="btn waves-effect waves-light"  type="submit" id="submit-button">Submit<i class="material-icons right">send</i></button>
+					
+			</form>
+		</div>
+	</div>
+<script>
+	function validateForm() {
+		let x = document.forms["myForm"]["url"].value;
+		const regex = new RegExp("((http|https)://)(www.)?[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)");
+
+		if (regex.test(x)) {
+			if(x.includes('//')){
+			x = x.split('//')[1];
+		}
+		if(x.includes('www.')){
+			x = x.split('www.')[1];
+		}
+		  return true;
+		}else{
+			document.getElementById('error').innerHTML = "Invalid URL format. Please enter a valid URL starting with http:// or https:// and without any extra characters.";
+			return false;
+		}
+				
+	  }
+</script>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<!--Import materialize.js-->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+</head>
+</body>
+</html>
